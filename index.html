@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حاسبة دورات النوم الذكية - الإصدار الاحترافي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', sans-serif;
+        }
+        
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #7c3aed;
+            --accent: #06b6d4;
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --border-radius: 16px;
+            --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            color: var(--light);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background-color: rgba(30, 41, 59, 0.9);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: float 20s linear infinite;
+            opacity: 0.3;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-30px, -30px) rotate(360deg); }
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .app-icon {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .input-section {
+            background-color: rgba(15, 23, 42, 0.6);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--accent);
+        }
+        
+        .time-input-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        input[type="time"] {
+            padding: 15px;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            background-color: var(--dark-light);
+            color: white;
+            font-size: 1.2rem;
+            flex-grow: 1;
+            transition: var(--transition);
+        }
+        
+        input[type="time"]:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.3);
+        }
+        
+        .quick-times {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        
+        .quick-time-btn {
+            background-color: rgba(37, 99, 235, 0.2);
+            color: var(--light);
+            border: 1px solid rgba(37, 99, 235, 0.5);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+        
+        .quick-time-btn:hover {
+            background-color: rgba(37, 99, 235, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        .calculate-btn {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 18px 30px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .calculate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+            background: linear-gradient(to right, var(--primary-dark), #6d28d9);
+        }
+        
+        .calculate-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .results-container {
+            margin-top: 30px;
+            display: none;
+        }
+        
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .results-header h2 {
+            color: var(--accent);
+            font-size: 1.8rem;
+        }
+        
+        .reset-btn {
+            background-color: rgba(239, 68, 68, 0.2);
+            color: var(--light);
+            border: 1px solid var(--danger);
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .reset-btn:hover {
+            background-color: rgba(239, 68, 68, 0.4);
+        }
+        
+        .cycles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .cycle-card {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9));
+            border-radius: var(--border-radius);
+            padding: 20px;
+            border-left: 5px solid var(--primary);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cycle-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cycle-card.best {
+            border-left-color: var(--success);
+            background: linear-gradient(145deg, rgba(16, 185, 129, 0.1), rgba(30, 41, 59, 0.9));
+        }
+        
+        .cycle-card.good {
+            border-left-color: var(--warning);
+        }
+        
+        .cycle-card.ok {
+            border-left-color: var(--gray);
+        }
+        
+        .cycle-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .cycle-title {
+            font-size: 1.3rem;
+            color: var(--accent);
+        }
+        
+        .cycle-badge {
+            background-color: var(--dark);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+        
+        .cycle-time {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fbbf24;
+            margin: 10px 0;
+            text-align: center;
+            direction: ltr;
+        }
+        
+        .cycle-status {
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .cycle-stages {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .stage {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+        
+        .stage i {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .stage.light { color: #60a5fa; }
+        .stage.deep { color: #8b5cf6; }
+        .stage.rem { color: #f59e0b; }
+        
+        .info-section {
+            background-color: rgba(6, 182, 212, 0.1);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-top: 30px;
+            border-left: 5px solid var(--accent);
+        }
+        
+        .info-section h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-section ul {
+            padding-right: 20px;
+            line-height: 1.8;
+        }
+        
+        .info-section li {
+            margin-bottom: 10px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: var(--gray);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .cycles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header {
+                padding: 20px 15px;
+            }
+            
+            .header h1 {
+                font-size: 1.7rem;
+            }
+            
+            .time-input-wrapper {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .quick-times {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="app-icon">💤</div>
+            <h1>حاسبة دورات النوم الذكية</h1>
+            <p>احسب أفضل أوقات الاستيقاظ بناءً على دورات النوم الطبيعية (90 دقيقة لكل دورة) لتستيقظ نشيطًا ومنتعشًا</p>
+        </div>
+        
+        <div class="content">
+            <div class="input-section">
+                <div class="input-group">
+                    <label for="sleepTime"><i class="far fa-clock"></i> حدد وقت النوم المتوقع</label>
+                    <div class="time-input-wrapper">
+                        <input type="time" id="sleepTime" value="22:30">
+                        <div class="quick-times">
+                            <button class="quick-time-btn" onclick="setTime('21:00')">9:00 مساءً</button>
+                            <button class="quick-time-btn" onclick="setTime('22:00')">10:00 مساءً</button>
+                            <button class="quick-time-btn" onclick="setTime('23:00')">11:00 مساءً</button>
+                            <button class="quick-time-btn" onclick="setTime('00:00')">12:00 منتصف الليل</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="calculate-btn" onclick="calculateWakeUpTimes()">
+                    <i class="fas fa-calculator"></i> احسب أفضل أوقات الاستيقاظ
+                </button>
+            </div>
+            
+            <div id="results" class="results-container">
+                <div class="results-header">
+                    <h2><i class="fas fa-bed"></i> أفضل أوقات الاستيقاظ</h2>
+                    <button class="reset-btn" onclick="resetCalculator()">
+                        <i class="fas fa-redo"></i> إعادة الحساب
+                    </button>
+                </div>
+                
+                <div class="cycles-grid" id="cyclesContainer">
+                    <!-- سيتم إضافة دورات النوم هنا ديناميكيًا -->
+                </div>
+                
+                <div class="info-section">
+                    <h3><i class="fas fa-info-circle"></i> معلومات عن دورات النوم</h3>
+                    <ul>
+                        <li>كل دورة نوم كاملة تستغرق حوالي 90 دقيقة وتتضمن مراحل: النوم الخفيف، النوم العميق، ونوم حركة العين السريعة (الأحلام).</li>
+                        <li>الاستيقاظ في نهاية دورة نوم كاملة يساعد على الشعور بالنشاط والانتعاش.</li>
+                        <li>الدورات من 3 إلى 5 هي الأفضل للاستيقاظ منها، حيث تكون قد أكملت فترات النوم العميق.</li>
+                        <li>يضيف التطبيق تلقائيًا 15 دقيقة كوقت افتراضي للدخول في النوم.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>تم التطوير باستخدام أحدث معايير علم النوم © 2023 حاسبة النوم الذكية</p>
+        </div>
+    </div>
+
+    <script>
+        // دالة لتعيين وقت سريع
+        function setTime(time) {
+            document.getElementById('sleepTime').value = time;
+        }
+        
+        // دالة لإعادة تعيين الحاسبة
+        function resetCalculator() {
+            document.getElementById('sleepTime').value = '22:30';
+            document.getElementById('results').style.display = 'none';
+            document.getElementById('cyclesContainer').innerHTML = '';
+        }
+        
+        // دالة حساب أوقات الاستيقاظ
+        function calculateWakeUpTimes() {
+            const sleepInput = document.getElementById('sleepTime').value;
+            if (!sleepInput) {
+                alert("يرجى اختيار وقت النوم أولاً");
+                return;
+            }
+
+            const resultsDiv = document.getElementById('results');
+            const cyclesContainer = document.getElementById('cyclesContainer');
+            resultsDiv.style.display = 'block';
+            cyclesContainer.innerHTML = '';
+
+            const [hours, minutes] = sleepInput.split(':').map(Number);
+            let sleepDate = new Date();
+            sleepDate.setHours(hours, minutes, 0);
+
+            // إضافة 15 دقيقة كوقت افتراضي للدخول في النوم
+            sleepDate.setMinutes(sleepDate.getMinutes() + 15);
+
+            // حساب 6 دورات (من الدورة الأولى حتى السادسة)
+            for (let i = 1; i <= 6; i++) {
+                // إنشاء نسخة جديدة من التاريخ لتجنب مشاكل المرجع
+                let wakeDate = new Date(sleepDate.getTime());
+                wakeDate.setMinutes(wakeDate.getMinutes() + (i * 90));
+                
+                const wakeTime = wakeDate.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit', hour12: true });
+                
+                let status = "";
+                let cardClass = "";
+                
+                if (i < 3) {
+                    status = "نوم خفيف - قد لا تشعر بالراحة الكافية إذا استيقظت الآن.";
+                    cardClass = "ok";
+                } else if (i === 3 || i === 4) {
+                    status = "تم الانتهاء من فترات النوم العميق. وقت استيقاظ جيد مع بداية النشاط.";
+                    cardClass = "good";
+                } else {
+                    status = "نوم مثالي! أكملت دورات العقل والجسم بالكامل. وقت استيقاظ ممتاز.";
+                    cardClass = "best";
+                }
+
+                // حساب إجمالي ساعات النوم
+                const totalHours = (i * 1.5).toFixed(1);
+                
+                // إنشاء بطاقة الدورة
+                const cycleCard = document.createElement('div');
+                cycleCard.className = `cycle-card ${cardClass}`;
+                cycleCard.innerHTML = `
+                    <div class="cycle-header">
+                        <div class="cycle-title">دورة النوم ${i}</div>
+                        <div class="cycle-badge">${totalHours} ساعة</div>
+                    </div>
+                    <div class="cycle-time">${wakeTime}</div>
+                    <div class="cycle-status">${status}</div>
+                    <div class="cycle-stages">
+                        <div class="stage light">
+                            <i class="fas fa-moon"></i>
+                            <span>نوم خفيف</span>
+                        </div>
+                        <div class="stage deep">
+                            <i class="fas fa-bed"></i>
+                            <span>نوم عميق</span>
+                        </div>
+                        <div class="stage rem">
+                            <i class="fas fa-brain"></i>
+                            <span>نوم الأحلام</span>
+                        </div>
+                    </div>
+                `;
+                
+                cyclesContainer.appendChild(cycleCard);
+            }
+            
+            // تمرير إلى قسم النتائج
+            resultsDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // حساب تلقائي عند تحميل الصفحة
+        window.onload = function() {
+            calculateWakeUpTimes();
+        };
+    </script>
+</body>
+</html>
