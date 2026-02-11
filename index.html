@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>حاسبة دورات النوم الذكية - متوافق مع جميع الهواتف</title>
+    <title>حاسبة دورات النوم الذكية</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* إعدادات أساسية للهواتف */
         * {
             margin: 0;
             padding: 0;
@@ -30,80 +29,40 @@
             --border-radius: 16px;
             --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             --transition: all 0.3s ease;
-            --safe-area-inset-top: env(safe-area-inset-top, 0px);
-            --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
         }
         
         html {
             font-size: 16px;
             height: 100%;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
             color: var(--light);
             min-height: 100vh;
-            min-height: -webkit-fill-available;
-            padding: 0;
-            margin: 0;
+            padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow-x: hidden;
-            padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-        }
-        
-        /* تحسينات للأجهزة الصغيرة جداً */
-        @media (max-width: 320px) {
-            html {
-                font-size: 14px;
-            }
-        }
-        
-        /* تحسينات للأجهزة متوسطة الحجم */
-        @media (min-width: 321px) and (max-width: 480px) {
-            html {
-                font-size: 15px;
-            }
         }
         
         .container {
             width: 100%;
-            max-width: 100%;
-            min-height: 100vh;
-            background-color: var(--dark-light);
-            overflow-x: hidden;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        /* تحسين الشريط العلوي للهواتف */
-        .status-bar {
-            height: calc(20px + var(--safe-area-inset-top));
-            background-color: rgba(15, 23, 42, 0.8);
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            max-width: 500px;
+            background-color: rgba(30, 41, 59, 0.95);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .header {
             background: linear-gradient(to right, var(--primary), var(--secondary));
-            padding: 1.5rem 1rem;
+            padding: 25px 20px;
             text-align: center;
             position: relative;
             overflow: hidden;
-            margin-top: calc(20px + var(--safe-area-inset-top));
-            padding-top: 1rem;
-            padding-bottom: 1.5rem;
         }
         
         .header::before {
@@ -126,7 +85,7 @@
         
         .app-icon {
             font-size: 2.5rem;
-            margin-bottom: 0.8rem;
+            margin-bottom: 15px;
             position: relative;
             z-index: 1;
             display: inline-block;
@@ -140,47 +99,40 @@
         }
         
         .header h1 {
-            font-size: 1.7rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
             position: relative;
             z-index: 1;
             line-height: 1.3;
-            padding: 0 0.5rem;
         }
         
         .header p {
-            font-size: 0.95rem;
+            font-size: 1rem;
             opacity: 0.9;
             position: relative;
             z-index: 1;
             line-height: 1.5;
-            padding: 0 0.5rem;
             max-width: 100%;
             margin: 0 auto;
         }
         
         .content {
-            padding: 1.2rem;
-            flex: 1;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
+            padding: 25px;
         }
         
         .input-section {
             background-color: rgba(15, 23, 42, 0.8);
             border-radius: var(--border-radius);
-            padding: 1.2rem;
-            margin-bottom: 1.5rem;
+            padding: 20px;
+            margin-bottom: 25px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
         }
         
         .input-group {
             display: flex;
             flex-direction: column;
-            gap: 0.8rem;
-            margin-bottom: 1.2rem;
+            gap: 12px;
+            margin-bottom: 20px;
         }
         
         .input-group label {
@@ -189,18 +141,18 @@
             color: var(--accent);
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 8px;
         }
         
         .time-input-wrapper {
             display: flex;
             flex-direction: column;
-            gap: 0.8rem;
+            gap: 15px;
             width: 100%;
         }
         
         input[type="time"] {
-            padding: 1rem;
+            padding: 15px;
             border-radius: 12px;
             border: 2px solid rgba(255, 255, 255, 0.15);
             background-color: rgba(30, 41, 59, 0.9);
@@ -208,27 +160,8 @@
             font-size: 1.1rem;
             width: 100%;
             transition: var(--transition);
-            font-family: inherit;
             direction: ltr;
             text-align: center;
-        }
-        
-        /* تحسين مظهر time input على iOS */
-        input[type="time"]::-webkit-datetime-edit-fields-wrapper {
-            padding: 0;
-        }
-        
-        input[type="time"]::-webkit-datetime-edit {
-            color: white;
-        }
-        
-        input[type="time"]::-webkit-datetime-edit-ampm-field {
-            display: none;
-        }
-        
-        input[type="time"]::-webkit-clear-button,
-        input[type="time"]::-webkit-inner-spin-button {
-            display: none;
         }
         
         input[type="time"]:focus {
@@ -237,40 +170,11 @@
             box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.3);
         }
         
-        .quick-times {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.6rem;
-            width: 100%;
-        }
-        
-        .quick-time-btn {
-            background-color: rgba(37, 99, 235, 0.2);
-            color: var(--light);
-            border: 1px solid rgba(37, 99, 235, 0.5);
-            padding: 0.8rem 0.5rem;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 0.9rem;
-            white-space: nowrap;
-            text-align: center;
-            min-height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .quick-time-btn:active {
-            background-color: rgba(37, 99, 235, 0.4);
-            transform: translateY(-1px);
-        }
-        
         .calculate-btn {
             background: linear-gradient(to right, var(--primary), var(--secondary));
             color: white;
             border: none;
-            padding: 1.2rem;
+            padding: 16px 30px;
             border-radius: 12px;
             font-weight: bold;
             font-size: 1.1rem;
@@ -280,77 +184,114 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 0.8rem;
-            margin-top: 1.2rem;
-            min-height: 55px;
-            touch-action: manipulation;
+            gap: 10px;
+            margin-top: 20px;
         }
         
-        .calculate-btn:active {
-            transform: translateY(-1px);
+        .calculate-btn:hover {
+            transform: translateY(-2px);
             background: linear-gradient(to right, var(--primary-dark), #6d28d9);
         }
         
         .results-container {
-            margin-top: 1.5rem;
+            margin-top: 25px;
             display: none;
         }
         
         .results-header {
             display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .results-header h2 {
             color: var(--accent);
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 8px;
         }
         
         .reset-btn {
             background-color: rgba(239, 68, 68, 0.2);
             color: var(--light);
             border: 1px solid var(--danger);
-            padding: 0.8rem 1.2rem;
-            border-radius: 10px;
+            padding: 10px 18px;
+            border-radius: 8px;
             cursor: pointer;
             transition: var(--transition);
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
+            gap: 8px;
             font-size: 0.95rem;
-            min-height: 45px;
-            touch-action: manipulation;
         }
         
-        .reset-btn:active {
+        .reset-btn:hover {
             background-color: rgba(239, 68, 68, 0.4);
+        }
+        
+        .sleep-summary {
+            background: linear-gradient(145deg, rgba(6, 182, 212, 0.1), rgba(30, 41, 59, 0.9));
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 25px;
+            border-left: 5px solid var(--accent);
+        }
+        
+        .sleep-summary h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .summary-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .summary-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+        
+        .summary-value {
+            font-weight: bold;
+            color: #fbbf24;
         }
         
         .cycles-container {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
+            gap: 18px;
+            margin-bottom: 25px;
         }
         
         .cycle-card {
             background: linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
             border-radius: var(--border-radius);
-            padding: 1.2rem;
+            padding: 20px;
             border-left: 5px solid var(--primary);
             transition: var(--transition);
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
         }
         
         .cycle-card.best {
@@ -370,13 +311,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-            gap: 0.5rem;
+            margin-bottom: 15px;
         }
         
         .cycle-title {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--accent);
             font-weight: 600;
         }
@@ -384,18 +323,17 @@
         .cycle-badge {
             background-color: rgba(15, 23, 42, 0.8);
             color: white;
-            padding: 0.4rem 0.8rem;
+            padding: 6px 12px;
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: bold;
-            white-space: nowrap;
         }
         
         .cycle-time {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: bold;
             color: #fbbf24;
-            margin: 0.8rem 0;
+            margin: 15px 0;
             text-align: center;
             direction: ltr;
             letter-spacing: 1px;
@@ -404,221 +342,156 @@
         .cycle-status {
             color: var(--gray);
             line-height: 1.6;
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-            text-align: justify;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            text-align: center;
         }
         
-        .cycle-stages {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-        
-        .stage {
+        .sleep-stages {
             display: flex;
             flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .stage-item {
+            display: flex;
             align-items: center;
-            text-align: center;
-            font-size: 0.8rem;
-            color: var(--gray);
-            flex: 1;
-            min-width: 80px;
+            padding: 12px 15px;
+            border-radius: 10px;
+            background-color: rgba(15, 23, 42, 0.5);
         }
         
-        .stage i {
+        .stage-item.active {
+            background-color: rgba(37, 99, 235, 0.2);
+            border: 1px solid rgba(37, 99, 235, 0.5);
+        }
+        
+        .stage-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 15px;
             font-size: 1.2rem;
-            margin-bottom: 0.3rem;
         }
         
-        .stage.light { color: #60a5fa; }
-        .stage.deep { color: #8b5cf6; }
-        .stage.rem { color: #f59e0b; }
+        .stage-icon.light {
+            background-color: rgba(96, 165, 250, 0.2);
+            color: #60a5fa;
+        }
+        
+        .stage-icon.deep {
+            background-color: rgba(139, 92, 246, 0.2);
+            color: #8b5cf6;
+        }
+        
+        .stage-icon.rem {
+            background-color: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+        }
+        
+        .stage-info {
+            flex: 1;
+        }
+        
+        .stage-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .stage-duration {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
         
         .info-section {
             background-color: rgba(6, 182, 212, 0.1);
             border-radius: var(--border-radius);
-            padding: 1.2rem;
-            margin-top: 1.5rem;
+            padding: 20px;
+            margin-top: 25px;
             border-left: 5px solid var(--accent);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
         }
         
         .info-section h3 {
             color: var(--accent);
-            margin-bottom: 1rem;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 10px;
             font-size: 1.2rem;
         }
         
         .info-section ul {
-            padding-right: 1.2rem;
+            padding-right: 20px;
             line-height: 1.7;
         }
         
         .info-section li {
-            margin-bottom: 0.8rem;
+            margin-bottom: 10px;
             font-size: 0.95rem;
-            text-align: justify;
         }
         
         .footer {
             text-align: center;
-            padding: 1.2rem;
-            margin-top: 1.5rem;
+            padding: 20px;
             color: var(--gray);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             background-color: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            padding-bottom: calc(1.2rem + var(--safe-area-inset-bottom));
         }
         
-        /* تحسينات للأجهزة ذات الشاشات الأفقية */
-        @media (orientation: landscape) and (max-height: 500px) {
-            .container {
-                max-height: 100vh;
-                overflow-y: auto;
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
             }
             
             .header {
-                padding: 0.8rem 1rem;
-                margin-top: calc(10px + var(--safe-area-inset-top));
+                padding: 20px 15px;
             }
             
             .header h1 {
-                font-size: 1.4rem;
-            }
-            
-            .header p {
-                font-size: 0.85rem;
+                font-size: 1.6rem;
             }
             
             .content {
-                padding: 0.8rem;
-            }
-            
-            .quick-times {
-                grid-template-columns: repeat(4, 1fr);
-            }
-            
-            .cycle-card {
-                padding: 0.8rem;
+                padding: 20px;
             }
             
             .cycle-time {
-                font-size: 1.5rem;
-            }
-        }
-        
-        /* تحسينات للأجهزة الكبيرة (أكبر من الهواتف) */
-        @media (min-width: 768px) {
-            body {
-                padding: 1rem;
-            }
-            
-            .container {
-                max-width: 500px;
-                min-height: auto;
-                border-radius: var(--border-radius);
-                overflow: hidden;
-                box-shadow: var(--box-shadow);
-            }
-            
-            .status-bar {
-                display: none;
-            }
-            
-            .header {
-                margin-top: 0;
-            }
-            
-            .quick-times {
-                grid-template-columns: repeat(4, 1fr);
+                font-size: 1.8rem;
             }
             
             .results-header {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
+                flex-direction: column;
+                gap: 15px;
+                align-items: stretch;
             }
-        }
-        
-        /* تحسينات للشاشات الكبيرة جداً */
-        @media (min-width: 1024px) {
-            .container {
-                max-width: 450px;
-            }
-        }
-        
-        /* تحسين قابلية الضغط على الأزرار */
-        button, input[type="time"] {
-            cursor: pointer;
-        }
-        
-        /* إخفاء شريط التمرير مع الحفاظ على الوظيفة */
-        .content::-webkit-scrollbar {
-            width: 5px;
-        }
-        
-        .content::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.1);
-        }
-        
-        .content::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-        }
-        
-        /* تحسينات للوضع الداكن */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --dark: #0a0a0a;
-                --dark-light: #1a1a1a;
-            }
-        }
-        
-        /* تحسينات للأجهزة القديمة */
-        @supports not (backdrop-filter: blur(5px)) {
-            .input-section,
-            .cycle-card,
-            .info-section,
-            .footer {
-                background-color: rgba(30, 41, 59, 0.95);
+            
+            .reset-btn {
+                justify-content: center;
             }
         }
     </style>
 </head>
 <body>
-    <div class="status-bar"></div>
-    
     <div class="container">
         <div class="header">
             <div class="app-icon">💤</div>
             <h1>حاسبة دورات النوم الذكية</h1>
-            <p>احسب أفضل أوقات الاستيقاظ بناءً على دورات النوم الطبيعية لتستيقظ نشيطاً</p>
+            <p>احسب أفضل أوقات الاستيقاظ بناءً على دورات النوم الطبيعية (90 دقيقة لكل دورة)</p>
         </div>
         
         <div class="content">
             <div class="input-section">
                 <div class="input-group">
-                    <label for="sleepTime"><i class="far fa-clock"></i> حدد وقت النوم المتوقع</label>
+                    <label for="sleepTime"><i class="far fa-clock"></i> أدخل وقت النوم المتوقع</label>
                     <div class="time-input-wrapper">
                         <input type="time" id="sleepTime" value="22:30">
-                        <div class="quick-times">
-                            <button class="quick-time-btn" onclick="setTime('21:00')">9:00 مساءً</button>
-                            <button class="quick-time-btn" onclick="setTime('22:00')">10:00 مساءً</button>
-                            <button class="quick-time-btn" onclick="setTime('23:00')">11:00 مساءً</button>
-                            <button class="quick-time-btn" onclick="setTime('00:00')">12:00 منتصف الليل</button>
-                        </div>
                     </div>
                 </div>
                 
@@ -629,55 +502,72 @@
             
             <div id="results" class="results-container">
                 <div class="results-header">
-                    <h2><i class="fas fa-bed"></i> أفضل أوقات الاستيقاظ</h2>
+                    <h2><i class="fas fa-bed"></i> نتائج حساب النوم</h2>
                     <button class="reset-btn" onclick="resetCalculator()">
                         <i class="fas fa-redo"></i> إعادة الحساب
                     </button>
                 </div>
                 
+                <!-- ملخص مراحل النوم -->
+                <div class="sleep-summary" id="sleepSummary">
+                    <h3><i class="fas fa-chart-bar"></i> ملخص مراحل النوم</h3>
+                    <div class="summary-item">
+                        <div class="summary-label">
+                            <i class="fas fa-moon" style="color: #60a5fa;"></i>
+                            <span>النوم الخفيف</span>
+                        </div>
+                        <div class="summary-value" id="lightSleepTime">--</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-label">
+                            <i class="fas fa-bed" style="color: #8b5cf6;"></i>
+                            <span>النوم العميق</span>
+                        </div>
+                        <div class="summary-value" id="deepSleepTime">--</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-label">
+                            <i class="fas fa-brain" style="color: #f59e0b;"></i>
+                            <span>نوم الأحلام (REM)</span>
+                        </div>
+                        <div class="summary-value" id="remSleepTime">--</div>
+                    </div>
+                </div>
+                
+                <!-- دورات النوم -->
                 <div class="cycles-container" id="cyclesContainer">
                     <!-- سيتم إضافة دورات النوم هنا ديناميكيًا -->
                 </div>
                 
                 <div class="info-section">
-                    <h3><i class="fas fa-info-circle"></i> معلومات عن دورات النوم</h3>
+                    <h3><i class="fas fa-info-circle"></i> كيف تعمل حاسبة النوم؟</h3>
                     <ul>
-                        <li>كل دورة نوم كاملة تستغرق حوالي 90 دقيقة وتتضمن مراحل: النوم الخفيف، النوم العميق، ونوم حركة العين السريعة (الأحلام).</li>
+                        <li>كل دورة نوم كاملة تستغرق 90 دقيقة وتتضمن 3 مراحل: النوم الخفيف، النوم العميق، ونوم حركة العين السريعة (الأحلام).</li>
+                        <li>في الدورة الأولى، تبدأ بالنوم الخفيف فقط.</li>
+                        <li>في الدورة الثانية، يضاف النوم العميق إلى الخفيف.</li>
+                        <li>من الدورة الثالثة، تظهر جميع مراحل النوم الثلاث.</li>
                         <li>الاستيقاظ في نهاية دورة نوم كاملة يساعد على الشعور بالنشاط والانتعاش.</li>
-                        <li>الدورات من 3 إلى 5 هي الأفضل للاستيقاظ منها، حيث تكون قد أكملت فترات النوم العميق.</li>
-                        <li>يضيف التطبيق تلقائيًا 15 دقيقة كوقت افتراضي للدخول في النوم.</li>
                     </ul>
                 </div>
             </div>
         </div>
         
         <div class="footer">
-            <p>حاسبة النوم الذكية - متوافق مع جميع الهواتف © 2023</p>
+            <p>حاسبة النوم الذكية - حساب دورات النوم الطبيعية © 2023</p>
         </div>
     </div>
 
     <script>
-        // دالة لتعيين وقت سريع
-        function setTime(time) {
-            document.getElementById('sleepTime').value = time;
-            // إضافة تأثير مرئي للزر المضغوط
-            event.target.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                event.target.style.transform = '';
-            }, 200);
-        }
-        
         // دالة لإعادة تعيين الحاسبة
         function resetCalculator() {
             document.getElementById('sleepTime').value = '22:30';
             document.getElementById('results').style.display = 'none';
             document.getElementById('cyclesContainer').innerHTML = '';
             
-            // إضافة تأثير مرئي
-            event.target.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                event.target.style.transform = '';
-            }, 200);
+            // إعادة تعيين ملخص النوم
+            document.getElementById('lightSleepTime').textContent = '--';
+            document.getElementById('deepSleepTime').textContent = '--';
+            document.getElementById('remSleepTime').textContent = '--';
             
             // إرجاع التمرير للأعلى
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -687,16 +577,9 @@
         function calculateWakeUpTimes() {
             const sleepInput = document.getElementById('sleepTime').value;
             if (!sleepInput) {
-                // عرض رسالة بديلة عن الـ alert
-                showNotification("يرجى اختيار وقت النوم أولاً");
+                alert("يرجى اختيار وقت النوم أولاً");
                 return;
             }
-
-            // تأثير للزر عند الضغط
-            event.target.style.transform = 'scale(0.98)';
-            setTimeout(() => {
-                event.target.style.transform = '';
-            }, 200);
 
             const resultsDiv = document.getElementById('results');
             const cyclesContainer = document.getElementById('cyclesContainer');
@@ -709,31 +592,43 @@
 
             // إضافة 15 دقيقة كوقت افتراضي للدخول في النوم
             sleepDate.setMinutes(sleepDate.getMinutes() + 15);
+            
+            // حساب مراحل النوم التراكمية لكل دورة
+            let totalLightSleep = 0;
+            let totalDeepSleep = 0;
+            let totalREMSleep = 0;
 
             // حساب 6 دورات (من الدورة الأولى حتى السادسة)
             for (let i = 1; i <= 6; i++) {
-                // إنشاء نسخة جديدة من التاريخ لتجنب مشاكل المرجع
+                // إنشاء نسخة جديدة من التاريخ
                 let wakeDate = new Date(sleepDate.getTime());
                 wakeDate.setMinutes(wakeDate.getMinutes() + (i * 90));
                 
-                // تنسيق الوقت بحيث يعرض AM/PM بشكل مناسب للغة العربية
                 const wakeTime = wakeDate.toLocaleTimeString('ar-EG', { 
                     hour: '2-digit', 
                     minute: '2-digit',
                     hour12: true 
                 });
                 
+                // حساب مراحل النوم لكل دورة
+                let stages = calculateSleepStages(i);
+                
+                // تحديث المجاميع التراكمية
+                totalLightSleep += stages.light;
+                totalDeepSleep += stages.deep;
+                totalREMSleep += stages.rem;
+                
                 let status = "";
                 let cardClass = "";
                 
                 if (i < 3) {
-                    status = "نوم خفيف - قد لا تشعر بالراحة الكافية إذا استيقظت الآن.";
+                    status = "نوم غير كافٍ للشعور بالراحة التامة";
                     cardClass = "ok";
                 } else if (i === 3 || i === 4) {
-                    status = "تم الانتهاء من فترات النوم العميق. وقت استيقاظ جيد مع بداية النشاط.";
+                    status = "نوم جيد - استيقاظ مثالي مع شعور بالانتعاش";
                     cardClass = "good";
                 } else {
-                    status = "نوم مثالي! أكملت دورات العقل والجسم بالكامل. وقت استيقاظ ممتاز.";
+                    status = "نوم ممتاز - استيقاظ نشيط مع طاقة عالية";
                     cardClass = "best";
                 }
 
@@ -750,123 +645,172 @@
                     </div>
                     <div class="cycle-time">${wakeTime}</div>
                     <div class="cycle-status">${status}</div>
-                    <div class="cycle-stages">
-                        <div class="stage light">
-                            <i class="fas fa-moon"></i>
-                            <span>نوم خفيف</span>
-                        </div>
-                        <div class="stage deep">
-                            <i class="fas fa-bed"></i>
-                            <span>نوم عميق</span>
-                        </div>
-                        <div class="stage rem">
-                            <i class="fas fa-brain"></i>
-                            <span>نوم الأحلام</span>
-                        </div>
+                    <div class="sleep-stages">
+                        ${generateStageHTML(i)}
                     </div>
                 `;
                 
                 cyclesContainer.appendChild(cycleCard);
             }
             
+            // تحديث ملخص النوم
+            updateSleepSummary(totalLightSleep, totalDeepSleep, totalREMSleep);
+            
             // تمرير إلى قسم النتائج بسلاسة
             setTimeout(() => {
                 resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }, 300);
-            
-            // إظهار رسالة نجاح
-            showNotification("تم حساب أوقات الاستيقاظ بنجاح!", "success");
         }
         
-        // دالة لعرض إشعار بديل عن alert
-        function showNotification(message, type = "error") {
-            // إزالة أي إشعار سابق
-            const existingNotification = document.querySelector('.notification');
-            if (existingNotification) {
-                existingNotification.remove();
+        // دالة لحساب مراحل النوم لكل دورة
+        function calculateSleepStages(cycleNumber) {
+            // نسب مراحل النوم التقريبية في كل دورة
+            // الدورة 1: خفيف فقط
+            // الدورة 2: خفيف + عميق
+            // الدورات 3-6: خفيف + عميق + أحلام
+            
+            let light = 0, deep = 0, rem = 0;
+            
+            if (cycleNumber === 1) {
+                // الدورة الأولى: كلها نوم خفيف
+                light = 90;
+            } else if (cycleNumber === 2) {
+                // الدورة الثانية: نوم خفيف وعميق
+                light = 50;
+                deep = 40;
+            } else {
+                // الدورات من 3 إلى 6: جميع المراحل
+                light = 30;
+                deep = 40;
+                rem = 20;
             }
             
-            // إنشاء عنصر الإشعار
-            const notification = document.createElement('div');
-            notification.className = `notification ${type}`;
-            notification.innerHTML = `
-                <div class="notification-content">
-                    <i class="fas ${type === 'error' ? 'fa-exclamation-circle' : 'fa-check-circle'}"></i>
-                    <span>${message}</span>
-                </div>
-            `;
+            return { light, deep, rem };
+        }
+        
+        // دالة لإنشاء HTML لمراحل النوم
+        function generateStageHTML(cycleNumber) {
+            let html = '';
             
-            // إضافة أنماط للإشعار
-            const style = document.createElement('style');
-            style.textContent = `
-                .notification {
-                    position: fixed;
-                    top: 70px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    background: ${type === 'error' ? 'rgba(239, 68, 68, 0.9)' : 'rgba(16, 185, 129, 0.9)'};
-                    color: white;
-                    padding: 12px 20px;
-                    border-radius: 10px;
-                    z-index: 9999;
-                    backdrop-filter: blur(10px);
-                    -webkit-backdrop-filter: blur(10px);
-                    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-                    max-width: 90%;
-                    width: auto;
-                    text-align: center;
-                    animation: slideDown 0.3s ease;
-                }
-                
-                @keyframes slideDown {
-                    from { top: -100px; opacity: 0; }
-                    to { top: 70px; opacity: 1; }
-                }
-                
-                .notification-content {
-                    display: flex;
-                    align-items: center;
-                    gap: 10px;
-                    font-weight: 500;
-                }
-                
-                .notification i {
-                    font-size: 1.2rem;
-                }
-            `;
+            if (cycleNumber === 1) {
+                // الدورة الأولى: نوم خفيف فقط
+                html = `
+                    <div class="stage-item active">
+                        <div class="stage-icon light">
+                            <i class="fas fa-moon"></i>
+                        </div>
+                        <div class="stage-info">
+                            <div class="stage-name">نوم خفيف</div>
+                            <div class="stage-duration">تبدأ بالنوم الخفيف لمدة 90 دقيقة</div>
+                        </div>
+                    </div>
+                    <div class="stage-item">
+                        <div class="stage-icon deep">
+                            <i class="fas fa-bed"></i>
+                        </div>
+                        <div class="stage-info">
+                            <div class="stage-name">نوم عميق</div>
+                            <div class="stage-duration">لم تصل بعد لمرحلة النوم العميق</div>
+                        </div>
+                    </div>
+                    <div class="stage-item">
+                        <div class="stage-icon rem">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="stage-info">
+                            <div class="stage-name">نوم الأحلام</div>
+                            <div class="stage-duration">لم تصل بعد لمرحلة نوم الأحلام</div>
+                        </div>
+                    </div>
+                `;
+            } else if (cycleNumber === 2) {
+                // الدورة الثانية: نوم خفيف وعميق
+                html = `
+                    <div class="stage-item active">
+                        <div class="stage-icon light">
+                            <i class="fas fa-moon"></i>
+                        </div>
+                        <div class="stage-info">
+                            <div class="stage-name">نوم خفيف</div>
+                            <div class="stage-duration">50 دقيقة من النوم الخفيف</div>
+                        </div>
+                    </div>
+                    <div class="stage-item active">
+                        <div class="stage-icon deep">
+                            <i class="fas fa-bed"></i>
+                        </div>
+                        <div class="stage-info">
+                            <div class="stage-name">نوم عميق</div>
+                            <div class="stage-duration">40 دقيقة من النوم العميق</div>
+                        </div>
+                    </div>
+                    <div class="stage-item">
+                        <div class="stage-icon rem">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="stage-info">
+                            <div class="stage-name">نوم الأحلام</div>
+                            <div class="stage-duration">لم تصل بعد لمرحلة نوم الأحلام</div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                // الدورات من 3 إلى 6: جميع المراحل
+                html = `
+                    <div class="stage-item active">
+                        <div class="stage-icon light">
+                            <i class="fas fa-moon"></i>
+                        </div>
+                        <div class="stage-info">
+                            <div class="stage-name">نوم خفيف</div>
+                            <div class="stage-duration">30 دقيقة من النوم الخفيف</div>
+                        </div>
+                    </div>
+                    <div class="stage-item active">
+                        <div class="stage-icon deep">
+                            <i class="fas fa-bed"></i>
+                        </div>
+                        <div class="stage-info">
+                            <div class="stage-name">نوم عميق</div>
+                            <div class="stage-duration">40 دقيقة من النوم العميق</div>
+                        </div>
+                    </div>
+                    <div class="stage-item active">
+                        <div class="stage-icon rem">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="stage-info">
+                            <div class="stage-name">نوم الأحلام</div>
+                            <div class="stage-duration">20 دقيقة من نوم الأحلام</div>
+                        </div>
+                    </div>
+                `;
+            }
             
-            document.head.appendChild(style);
-            document.body.appendChild(notification);
+            return html;
+        }
+        
+        // دالة لتحديث ملخص النوم
+        function updateSleepSummary(light, deep, rem) {
+            // تحويل الدقائق إلى ساعات ودقائق
+            const formatTime = (minutes) => {
+                const hours = Math.floor(minutes / 60);
+                const mins = minutes % 60;
+                return `${hours} ساعة و ${mins} دقيقة`;
+            };
             
-            // إزالة الإشعار بعد 3 ثوانٍ
-            setTimeout(() => {
-                notification.style.animation = 'slideUp 0.3s ease';
-                setTimeout(() => {
-                    notification.remove();
-                    style.remove();
-                }, 300);
-            }, 3000);
+            document.getElementById('lightSleepTime').textContent = formatTime(light);
+            document.getElementById('deepSleepTime').textContent = formatTime(deep);
+            document.getElementById('remSleepTime').textContent = formatTime(rem);
         }
         
         // حساب تلقائي عند تحميل الصفحة
-        window.addEventListener('DOMContentLoaded', function() {
-            // انتظار تحميل الصفحة بالكامل
+        window.onload = function() {
             setTimeout(() => {
                 calculateWakeUpTimes();
             }, 500);
-        });
-        
-        // منع التمرير الزائد على جسم الصفحة
-        document.body.addEventListener('touchmove', function(e) {
-            if (e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON') {
-                return;
-            }
-        }, { passive: false });
-        
-        // تحسين أداء اللمس على iOS
-        document.addEventListener('touchstart', function() {}, {passive: true});
+        };
     </script>
-
 <script>
     // تسجيل الـ Service Worker
     if ('serviceWorker' in navigator) {
